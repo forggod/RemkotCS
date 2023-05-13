@@ -48,7 +48,7 @@
             button_application.Location = new Point(70, 172);
             button_application.Name = "button_application";
             button_application.Size = new Size(120, 40);
-            button_application.TabIndex = 0;
+            button_application.TabIndex = 1;
             button_application.Text = "Заявки";
             button_application.UseVisualStyleBackColor = true;
             button_application.Click += button_application_Click;

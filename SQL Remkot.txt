@@ -1,0 +1,36 @@
+SELECT * FROM public.cashier;
+SELECT * FROM public.client;
+SELECT * FROM public.normal_document;
+SELECT * FROM public.parts_info;
+SELECT * FROM public.service_application;
+
+DROP TABLE public.service_application;
+DROP TABLE public.parts_info;
+DROP TABLE public.normal_document;
+DROP TABLE public.client;
+DROP TABLE public.cashier;
+
+
+INSERT INTO cashier (fio) VALUES ('Козлов Вилли Петрович');
+INSERT INTO cashier (fio) VALUES ('Селиверстов Август Альбертович');
+INSERT INTO cashier (fio) VALUES ('Коновалов Эрнест Пантелеймонович');
+INSERT INTO cashier (fio) VALUES ('Антонов Никифор Васильевич');
+
+INSERT INTO client (fio, phone) VALUES ('Кошелев Виссарион Игоревич', '7898984141');
+INSERT INTO client (fio, phone) VALUES ('Поляков Витольд Платонович', '78908414');
+INSERT INTO client (fio, phone) VALUES ('Дроздов Орест Матвеевич', '78989512511');
+INSERT INTO client (fio, phone) VALUES ('Фомичёв Варлаам Егорович', '78988568581');
+
+INSERT INTO normal_document (document) VALUES ('Document1');
+INSERT INTO normal_document (document) VALUES ('Document2');
+INSERT INTO normal_document (document) VALUES ('Document3');
+INSERT INTO normal_document (document) VALUES ('Document4');
+
+INSERT INTO parts_info (name, supplier_aligment, count) VALUES ('Батарея', 3, 5);
+INSERT INTO parts_info (name, supplier_aligment, count) VALUES ('Процессор', 3, 3);
+INSERT INTO parts_info (name, supplier_aligment, count) VALUES ('Матрица', 2, 2);
+
+INSERT INTO service_application (id_cashier, id_client, id_part, id_document, service) 
+	VALUES (1, 2, 1, 1, 'Замена батареи');
+INSERT INTO service_application (id_cashier, id_client, id_part, id_document, service) 
+	VALUES (3, 4, 3, 1, 'Замена дисплея');

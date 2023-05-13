@@ -142,7 +142,7 @@
             // textBox_service
             // 
             textBox_service.Location = new Point(115, 210);
-            textBox_service.MaxLength = 12;
+            textBox_service.MaxLength = 2048;
             textBox_service.Name = "textBox_service";
             textBox_service.Size = new Size(200, 27);
             textBox_service.TabIndex = 1;
@@ -153,7 +153,7 @@
             button_action.Name = "button_action";
             button_action.Size = new Size(94, 29);
             button_action.TabIndex = 0;
-            button_action.Text = "button1";
+            button_action.Text = "Добавить";
             button_action.UseVisualStyleBackColor = true;
             button_action.Click += button_action_Click;
             // 

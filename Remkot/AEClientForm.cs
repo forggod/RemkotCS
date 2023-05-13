@@ -5,8 +5,8 @@ namespace Remkot
     public partial class AEClientForm : Form
     {
         private int _id;
-        private string[] _attr;
-        public AEClientForm(int id, string[] attr)
+        private string[]? _attr;
+        public AEClientForm(int id, string[]? attr)
         {
             _id = id;
             _attr = attr;
@@ -38,8 +38,9 @@ namespace Remkot
             }
             if (_attr != null)
             {
-                // TODO: Вызов метода изменения
+                dataBaseConnection.editClient(_id, fio, phone);
             }
+            this.Close();
         }
     }
 }

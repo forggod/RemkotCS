@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System.Data;
+using System.Xml.Linq;
 
 namespace Remkot
 {
@@ -79,8 +80,8 @@ namespace Remkot
         }
         public DataTable getApplicationsUI()
         {
-            string sql = $"SELECT sa.id_application, cl.fio, ca.fio, pi.name, id_document, service FROM " +
-                            $"service_application sa JOIN client cl ON sa.id_application = cl.id_client " +
+            string sql = $"SELECT sa.id_application, cl.fio, ca.fio, pi.name, id_document, service FROM service_application sa " +
+                            $"JOIN client cl ON sa.id_application = cl.id_client " +
                             $"JOIN cashier ca ON sa.id_cashier = ca.id_cashier " +
                             $"JOIN parts_info pi ON sa.id_part = pi.id_part;";
             _connection.Open();
@@ -218,6 +219,102 @@ namespace Remkot
             }
             _connection.Close();
         }
-        // TODO: Добавить методы изменения
+        public bool editClient(int id, string fio, string phone)
+        {
+            try
+            {
+                string sql = $"UPDATE client SET fio = '{fio}', phone = '{phone}' WHERE id_client = '{id}';";
+                _connection.Open();
+                using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand(sql, _connection))
+                {
+                    npgsqlCommand.ExecuteNonQuery();
+                }
+                _connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникло исключение" + $"\n{ex.Message}");
+                return false;
+            }
+        }
+        public bool editServiceApplication(int id, int cashier, int client, int part, int document, string service)
+        {
+            try
+            {
+                string sql = $"UPDATE service_application SET id_cashier = '{cashier}', id_client = '{client}', id_part = '{part}', " +
+                    $"id_document = '{document}', service = '{service}' WHERE id_application= '{id}';";
+                _connection.Open();
+                using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand(sql, _connection))
+                {
+                    npgsqlCommand.ExecuteNonQuery();
+                }
+                _connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникло исключение" + $"\n{ex.Message}");
+                return false;
+            }
+        }
+        public bool editCashier(int id, string fio)
+        {
+            try
+            {
+                string sql = $"UPDATE cashier SET fio = '{fio}' WHERE id_cashier = '{id}';";
+                _connection.Open();
+                using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand(sql, _connection))
+                {
+                    npgsqlCommand.ExecuteNonQuery();
+                }
+                _connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникло исключение" + $"\n{ex.Message}");
+                return false;
+            }
+        }
+        public bool editPartsInfo(int id, string name, int supAlignId, int count)
+        {
+            try
+            {
+                string sql = $"UPDATE parts_info SET name = '{name}', supplier_aligment = '{supAlignId}', " +
+                    $"count = '{count}' WHERE id_part = '{id}';";
+                _connection.Open();
+                using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand(sql, _connection))
+                {
+                    npgsqlCommand.ExecuteNonQuery();
+                }
+                _connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникло исключение" + $"\n{ex.Message}");
+                return false;
+            }
+        }
+        public bool editDocument(int id, string document)
+        {
+            try
+            {
+                string sql = $"UPDATE normal_document SET document = '{document}' WHERE id_document = '{id}';";
+                _connection.Open();
+                using (NpgsqlCommand npgsqlCommand = new NpgsqlCommand(sql, _connection))
+                {
+                    npgsqlCommand.ExecuteNonQuery();
+                }
+                _connection.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Возникло исключение" + $"\n{ex.Message}");
+                return false;
+            }
+        }
     }
 }
